@@ -29,6 +29,7 @@ async function run() {
         const categoryCollection = client.db('ResaleLand').collection('categoryCollection');
         const userCollection = client.db('ResaleLand').collection('userCollection');
         const productCollection = client.db('ResaleLand').collection('productsCollection');
+        const bookMeetingCollection = client.db('ResaleLand').collection('bookMeetingCollection');
 
 
         app.get('/category', async (req, res) => {
@@ -55,11 +56,29 @@ async function run() {
             const id = req.params.id;
             console.log(id);
             const query = {
-                categoryId: ('id')
+                category: id
             };
             const product = await productCollection.find(query).toArray();
             res.send(product);
         });
+
+
+        // To get Products via Email Address.
+        app.get('/products/:email', async(req, res) => {
+            const email = req.params.email;
+            const query = {
+                email : email 
+            }
+            const result = await productCollection.find(query).toArray();
+            res.send(result);
+        })
+
+
+        app.post('/buyerInfo', async (req, res) => {
+            const buyerInfo = req.body;
+            const result = await bookMeetingCollection.insertOne(buyerInfo);
+            res.send(result);
+        })
 
     }
     finally {
