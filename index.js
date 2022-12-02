@@ -248,7 +248,6 @@ async function run() {
         // Delete User
         app.delete('/users/sellers/:id', async (req, res) => {
             const id = req.params.id;
-            console.log(id);
             const query = { _id: ObjectId(id) };
             const result = await userCollection.deleteOne(query);
             res.send(result);
@@ -257,7 +256,6 @@ async function run() {
 
         app.get('/myOrders/:email', async (req, res) => {
             const email = req.params.email;
-            console.log(email);
             const query = { buyerEmail: email };
             const result = await bookMeetingCollection.find(query).toArray();
             res.send(result);
@@ -266,7 +264,6 @@ async function run() {
 
         app.get('/sellerProducts/:email', async (req, res) => {
             const email = req.params.email;
-            console.log(email);
             const query = { email: email };
             const result = await productCollection.find(query).toArray();
             res.send(result);
@@ -275,7 +272,6 @@ async function run() {
 
         app.get('/myBuyers/:email', async (req, res) => {
             const email = req.params.email;
-            console.log(email);
             const query = { sellerEmail: email };
             const result = await bookMeetingCollection.find(query).toArray();
             res.send(result);
