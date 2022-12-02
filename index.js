@@ -187,9 +187,7 @@ async function run() {
         // API For Update the role to Admin
         app.put('/users/admin/:id', async (req, res) => {
             const id = req.params.id;
-            // console.log(id);
-            // const email = req.params.email;
-            // const name = req.params.name;
+            
             const filter = {
                 _id: id
             }
